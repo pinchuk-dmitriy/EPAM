@@ -1,10 +1,8 @@
-﻿namespace Aircompany.Models
-{
-    public enum ClassificationLevel
-    {
-        UNCLASSIFIED,
-        CONFIDENTIAL,
-        SECRET,
-        TOP_SECRET
+﻿namespace Aircompany.Models {
+    public enum ClassificationLevel {
+        Unclassified,
+        Confidential,
+        Secret,
+        TopSecret
     }
 }

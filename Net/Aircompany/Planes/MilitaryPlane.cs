@@ -1,44 +1,36 @@
-﻿using Aircompany.Models;
+﻿using System.Collections.Generic;
+using Aircompany.Models;
 
-namespace Aircompany.Planes
-{
-    public class MilitaryPlane : Plane
-    {
-        public MilitaryType _type;
+namespace Aircompany.Planes {
+    public class MilitaryPlane : Plane {
 
-        public MilitaryPlane(string model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity, MilitaryType type)
-            : base(model, maxSpeed, maxFlightDistance, maxLoadCapacity)
+        public MilitaryType militaryTypePlane;
+        public MilitaryPlane(string modelPlane, int maxSpeed, int maxFlightDistance, int maxLoadCapacity, MilitaryType typePlane)
+            : base(modelPlane, maxSpeed, maxFlightDistance, maxLoadCapacity)
         {
-            _type = type;
+            militaryTypePlane = typePlane;
         }
 
-        public override bool Equals(object obj)
-        {
-            var plane = obj as MilitaryPlane;
-            return plane != null &&
-                   base.Equals(obj) &&
-                   _type == plane._type;
+        public MilitaryType GetPlaneType() {
+            return militaryTypePlane;
         }
 
-        public override int GetHashCode()
-        {
+        public override string ToString() {
+            return base.ToString().Replace("}",
+                ", type=" + militaryTypePlane + '}');
+        }
+
+        public override bool Equals(object obj) {
+            return obj is MilitaryPlane plane &&
+                base.Equals(obj) &&
+                militaryTypePlane == plane.militaryTypePlane;
+        }
+
+        public override int GetHashCode() {
             var hashCode = 1701194404;
-            hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + _type.GetHashCode();
+            hashCode *= base.GetHashCode();
+            hashCode *= 1521134295 + militaryTypePlane.GetHashCode();
             return hashCode;
         }
-
-        public MilitaryType PlaneTypeIs()
-        {
-            return _type;
-        }
-
-
-        public override string ToString()
-        {
-            return base.ToString().Replace("}",
-                    ", type=" + _type +
-                    '}');
-        }        
     }
 }
